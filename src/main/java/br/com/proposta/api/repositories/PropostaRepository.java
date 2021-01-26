@@ -1,9 +1,9 @@
 package br.com.proposta.api.repositories;
 
-import br.com.proposta.api.entities.Cliente;
+import br.com.proposta.api.entities.Proposta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+public interface PropostaRepository extends JpaRepository<Proposta, Long> {
 }
