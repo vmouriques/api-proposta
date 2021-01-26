@@ -26,4 +26,5 @@ public class PropostaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException("Proposta não encontrada", null));
 	}
 	
+	
 }
