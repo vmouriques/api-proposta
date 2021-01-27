@@ -36,4 +36,6 @@ public class Proposta implements Serializable {
 
     private BigDecimal valorDaParcela;
 
+    private BigDecimal jurosParcela;
+
 }

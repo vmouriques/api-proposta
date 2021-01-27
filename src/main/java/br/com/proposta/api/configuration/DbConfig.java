@@ -1,9 +1,10 @@
 package br.com.proposta.api.configuration;
 
-import br.com.proposta.api.repositories.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+
+import br.com.proposta.api.repositories.VeiculoRepository;
 
 @Configuration
 public class DbConfig implements CommandLineRunner {
