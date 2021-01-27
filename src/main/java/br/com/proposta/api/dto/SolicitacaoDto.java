@@ -16,28 +16,25 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class PropostaEntradaDTO implements Serializable{
-	private static final long serialVersionUID = 1L;
-	
-	@JsonProperty("nome_cliente")
-	private String nome;
-	
-	@JsonProperty("cpf_cliente")
-	private String cpf;
-	
-	@JsonProperty("email_cliente")
-	private String email;
-	
-	@JsonProperty("telefone_cliente")
-	private String telefone;
-	
-	@JsonProperty("modelo_veiculo")
+public class SolicitacaoDto implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @JsonProperty("nome_cliente")
+    private String nome;
+
+    @JsonProperty("email_cliente")
+    private String email;
+
+    @JsonProperty("cpf_cliente")
+    private String cpf;
+
+    @JsonProperty("modelo_veiculo")
     private String modelo;
-	
-	@JsonProperty("ano_veiculo")
+
+    @JsonProperty("ano_veiculo")
     private Integer ano;
-	
-	@JsonProperty("valor_veiculo")
+
+    @JsonProperty("valor_veiculo")
     private BigDecimal valor;
 
 }
