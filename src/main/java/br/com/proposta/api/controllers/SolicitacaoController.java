@@ -9,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.proposta.api.dto.PropostaDto;
 import br.com.proposta.api.dto.SolicitacaoDto;
 import br.com.proposta.api.dto.SolicitacaoRepostaDto;
 import br.com.proposta.api.entities.Solicitacao;
 import br.com.proposta.api.entities.Veiculo;
+import br.com.proposta.api.services.PropostaService;
 import br.com.proposta.api.services.SolicitacaoService;
 import br.com.proposta.api.services.VeiculoService;
 
@@ -25,6 +27,9 @@ public class SolicitacaoController {
 
 	@Autowired
 	private SolicitacaoService solicitacaoService;
+	
+	@Autowired
+	private PropostaService propostaService;
 
 	@PostMapping
 	public ResponseEntity<SolicitacaoRepostaDto> registraSolicitacao(@RequestBody SolicitacaoDto solicitacaoDto) {
@@ -43,8 +48,10 @@ public class SolicitacaoController {
 		return ResponseEntity.ok().body(new SolicitacaoRepostaDto(solicitacao));
 	}
 
-	@GetMapping("/{id_proposta}/proposta")
-	public String gerarProposta(@PathVariable(name = "id_proposta") Long idProposta) {
-		return "not implemented yet";
+	@GetMapping("/{id_solicitacao}/proposta")
+	public ResponseEntity<PropostaDto> gerarProposta(@PathVariable("id_solicitacao") Long idSolicitacao) {
+		Solicitacao solicitacao = solicitacaoService.findById(idSolicitacao);
+		PropostaDto propostaDto = propostaService.gerarProposta(solicitacao);
+		return ResponseEntity.ok().body(propostaDto);
 	}
 }
