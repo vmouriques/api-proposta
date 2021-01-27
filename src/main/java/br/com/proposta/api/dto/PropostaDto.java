@@ -2,10 +2,14 @@ package br.com.proposta.api.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import br.com.proposta.api.entities.Proposta;
+import br.com.proposta.api.entities.enums.TipoPagamento;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -36,5 +40,17 @@ public class PropostaDto implements Serializable {
 
     @JsonProperty("juros_por_parcela")
     private BigDecimal jurosParcela;
+    
+    public Proposta fromDto(PropostaDto propostaDto) {
+    	Proposta proposta = new Proposta();
+    	proposta.setTipoPagamento(TipoPagamento.BOLETO);
+    	proposta.setDataProposta(LocalDateTime.now());
+    	proposta.setValorTotal(this.valorTotal);
+    	proposta.setValorVeiculo(this.valorVeiculo);
+    	proposta.setValorDaParcela(propostaDto.getValorParcela());
+    	proposta.setQuantidadeParcelas(propostaDto.getQuantidadeParcelas());
+    	proposta.setJurosParcela(propostaDto.getJurosParcela());
+    	return proposta;
+    }
 
 }

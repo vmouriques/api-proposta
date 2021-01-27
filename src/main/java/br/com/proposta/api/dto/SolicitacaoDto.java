@@ -36,5 +36,5 @@ public class SolicitacaoDto implements Serializable {
 
 	@JsonProperty("valor_veiculo")
 	private BigDecimal valor;
-
+	
 }
