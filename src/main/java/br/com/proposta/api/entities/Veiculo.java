@@ -23,5 +23,10 @@ public class Veiculo implements Serializable {
     private Integer ano;
     private BigDecimal valor;
 
+    public Veiculo(String modelo, Integer ano, BigDecimal valor) {
+        this.modelo = modelo;
+        this.ano = ano;
+        this.valor = valor;
+    }
 }
 
