@@ -15,7 +15,6 @@ class PropostaServiceTest {
 
 	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.openMocks(this);
 		propostaService = new PropostaService();
 	}
 
