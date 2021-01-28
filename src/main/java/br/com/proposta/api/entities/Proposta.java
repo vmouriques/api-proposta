@@ -1,13 +1,23 @@
 package br.com.proposta.api.entities;
 
-import br.com.proposta.api.entities.enums.TipoPagamento;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.*;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import br.com.proposta.api.entities.enums.TipoPagamento;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
