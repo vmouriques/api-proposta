@@ -23,29 +23,40 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = {"id", "dataProposta"})
+@EqualsAndHashCode(of = { "id", "dataProposta" })
 @Entity
 @Table(name = "TB_PROPOSTA")
 public class Proposta implements Serializable {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    private TipoPagamento tipoPagamento;
+	private TipoPagamento tipoPagamento;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-    private LocalDateTime dataProposta;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	private LocalDateTime dataProposta;
 
-    private BigDecimal valorTotal;
+	private BigDecimal valorTotal;
 
-    private BigDecimal valorVeiculo;
+	private BigDecimal valorVeiculo;
 
-    private Integer quantidadeParcelas;
+	private Integer quantidadeParcelas;
 
-    private BigDecimal valorDaParcela;
+	private BigDecimal valorDaParcela;
 
-    private BigDecimal jurosParcela;
+	private BigDecimal jurosParcela;
+
+	public Proposta(TipoPagamento tipoPagamento, BigDecimal valorTotal, BigDecimal valorVeiculo,
+			Integer quantidadeParcelas, BigDecimal valorDaParcela, BigDecimal jurosParcela) {
+		this.tipoPagamento = tipoPagamento;
+		this.dataProposta = LocalDateTime.now();
+		this.valorTotal = valorTotal;
+		this.valorVeiculo = valorVeiculo;
+		this.quantidadeParcelas = quantidadeParcelas;
+		this.valorDaParcela = valorDaParcela;
+		this.jurosParcela = jurosParcela;
+	}
 
 }
