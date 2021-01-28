@@ -51,5 +51,14 @@ public class PropostaDto implements Serializable {
 		proposta.setJurosParcela(propostaDto.getJurosParcela());
 		return proposta;
 	}
+	
+	public PropostaDto(Proposta proposta, String nomeCliente) {
+		this.nome = nomeCliente;
+		this.valorTotal = proposta.getValorTotal();
+		this.valorVeiculo = proposta.getValorVeiculo();
+		this.quantidadeParcelas = proposta.getQuantidadeParcelas();
+		this.valorParcela = proposta.getValorDaParcela();
+		this.jurosParcela = proposta.getJurosParcela();
+	}
 
 }

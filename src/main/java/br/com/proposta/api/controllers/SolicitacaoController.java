@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.proposta.api.dto.PropostaDto;
 import br.com.proposta.api.dto.SolicitacaoDto;
 import br.com.proposta.api.dto.SolicitacaoRepostaDto;
+import br.com.proposta.api.entities.Proposta;
 import br.com.proposta.api.entities.Solicitacao;
 import br.com.proposta.api.entities.Veiculo;
 import br.com.proposta.api.services.PropostaService;
@@ -53,8 +54,8 @@ public class SolicitacaoController {
 	@GetMapping("/{id_solicitacao}/proposta")
 	public ResponseEntity<PropostaDto> gerarProposta(@PathVariable("id_solicitacao") Long idSolicitacao) {
 		Solicitacao solicitacao = solicitacaoService.findById(idSolicitacao);
-		PropostaDto propostaDto = propostaService.gerarProposta(solicitacao);
-		return ResponseEntity.ok().body(propostaDto);
+		Proposta proposta = propostaService.gerarProposta(solicitacao);
+		return ResponseEntity.ok().body(new PropostaDto(proposta, solicitacao.getNomeCliente()));
 	}
 	
 }
