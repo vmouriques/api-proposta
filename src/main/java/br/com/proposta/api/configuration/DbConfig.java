@@ -25,7 +25,7 @@ public class DbConfig implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		Veiculo veiculo1 = new Veiculo("Rolls-Royce Ghost ll 6.6 V12 Aut.", 2019, new BigDecimal(50000));
+		Veiculo veiculo1 = new Veiculo("Rolls-Royce Ghost ll 6.6 V12 Aut.", 2019, new BigDecimal(2600000));
 		Veiculo veiculo2 = new Veiculo("VW Fusca", 1961, new BigDecimal(8000));
 
 		veiculoRepository.saveAll(Arrays.asList(veiculo1, veiculo2));
