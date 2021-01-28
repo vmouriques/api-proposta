@@ -7,7 +7,6 @@ import java.math.RoundingMode;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockitoAnnotations;
 
 class PropostaServiceTest {
 
@@ -15,7 +14,6 @@ class PropostaServiceTest {
 
 	@BeforeEach
 	public void setup() {
-		MockitoAnnotations.openMocks(this);
 		propostaService = new PropostaService();
 	}
 
