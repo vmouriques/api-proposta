@@ -1,5 +1,7 @@
 package br.com.proposta.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,9 +32,9 @@ public class SolicitacaoController {
 	
 	@Autowired
 	private PropostaService propostaService;
-
+	
 	@PostMapping
-	public ResponseEntity<SolicitacaoRepostaDto> registraSolicitacao(@RequestBody SolicitacaoDto solicitacaoDto) {
+	public ResponseEntity<SolicitacaoRepostaDto> registraSolicitacao(@Valid @RequestBody SolicitacaoDto solicitacaoDto) {
 		Veiculo veiculo = new Veiculo(solicitacaoDto.getModelo(), solicitacaoDto.getAno(), solicitacaoDto.getValor());
 		Solicitacao solicitacao = new Solicitacao(solicitacaoDto.getNome(), solicitacaoDto.getEmail(),
 				solicitacaoDto.getCpf(), veiculo, null);
@@ -54,4 +56,5 @@ public class SolicitacaoController {
 		PropostaDto propostaDto = propostaService.gerarProposta(solicitacao);
 		return ResponseEntity.ok().body(propostaDto);
 	}
+	
 }
