@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class PropostaService {
-	
+
 	private static BigDecimal JUROS_POR_PARCELA = BigDecimal.valueOf(1.2);
 	private static Integer QUANTIDADE_PARCELAS = 36;
 
@@ -37,11 +37,12 @@ public class PropostaService {
 	public Proposta save(Proposta proposta) {
 		return repository.save(proposta);
 	}
-	
+
 	public Proposta gerarProposta(Solicitacao solicitacao) {
 		BigDecimal valorVeiculo = solicitacao.getVeiculo().getValor();
 		BigDecimal valorParcela = calculaValorDaParcela(valorVeiculo, QUANTIDADE_PARCELAS, JUROS_POR_PARCELA);
 		BigDecimal valorTotal = calculaValorTotalDaProposta(QUANTIDADE_PARCELAS, valorParcela);
+		
 		Proposta proposta = new Proposta(TipoPagamento.BOLETO, valorTotal, valorVeiculo, QUANTIDADE_PARCELAS,
 				valorParcela, JUROS_POR_PARCELA);
 
