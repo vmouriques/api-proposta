@@ -9,6 +9,9 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import br.com.proposta.api.entities.Solicitacao;
+import br.com.proposta.api.entities.Veiculo;
+import br.com.proposta.api.repositories.VeiculoRepository;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,5 +48,10 @@ public class SolicitacaoDto implements Serializable {
 	@NotNull(message = "Valor do veículo é obrigatório")
 	@JsonProperty("valor_veiculo")
 	private BigDecimal valor;
+	
+	public Solicitacao solicitacaoFromDto(SolicitacaoDto solicitacaoDto) {
+		Veiculo veiculo = new Veiculo(solicitacaoDto.getModelo(), solicitacaoDto.getAno(), solicitacaoDto.getValor());
+		return new Solicitacao(solicitacaoDto.getNome(), solicitacaoDto.getEmail(), solicitacaoDto.getCpf(), veiculo, null);
+	}
 	
 }

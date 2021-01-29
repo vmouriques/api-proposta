@@ -29,7 +29,6 @@ import br.com.proposta.api.entities.Solicitacao;
 import br.com.proposta.api.entities.Veiculo;
 import br.com.proposta.api.services.PropostaService;
 import br.com.proposta.api.services.SolicitacaoService;
-import br.com.proposta.api.services.VeiculoService;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(SolicitacaoController.class)
@@ -37,9 +36,6 @@ class SolicitacaoControllerTest {
 
 	@MockBean
 	private SolicitacaoService solicitacaoService;
-
-	@MockBean
-	private VeiculoService veiculoService;
 
 	@MockBean
 	private PropostaService propostaService;
@@ -68,14 +64,12 @@ class SolicitacaoControllerTest {
 		Solicitacao solicitacao = new Solicitacao(nome, email, cpf, veiculo, null);
 		SolicitacaoDto solicitacaoDto = new SolicitacaoDto(nome, email, cpf, modelo, ano, valor);
 
-		given(veiculoService.save(any(Veiculo.class))).willReturn(veiculo);
 		given(solicitacaoService.save(any(Solicitacao.class))).willReturn(solicitacao);
 
 		MockHttpServletResponse response = mockMvc.perform(post("/financiamento/v1/solicitacoes")
 				.contentType(MediaType.APPLICATION_JSON).content(jsonInput.write(solicitacaoDto).getJson())).andReturn()
 				.getResponse();
 
-		verify(veiculoService).save(veiculo);
 		verify(solicitacaoService).save(solicitacao);
 		assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
 		assertThat(response.getContentAsString())
