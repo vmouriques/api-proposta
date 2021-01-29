@@ -18,11 +18,15 @@ import br.com.proposta.api.entities.Proposta;
 import br.com.proposta.api.entities.Solicitacao;
 import br.com.proposta.api.services.PropostaService;
 import br.com.proposta.api.services.SolicitacaoService;
+import br.com.proposta.api.services.VeiculoService;
 
 @RestController
 @RequestMapping("financiamento/v1/solicitacoes")
 public class SolicitacaoController {
 
+	@Autowired
+	private VeiculoService veiculoService;
+	
 	@Autowired
 	private SolicitacaoService solicitacaoService;
 	
@@ -32,6 +36,7 @@ public class SolicitacaoController {
 	@PostMapping
 	public ResponseEntity<SolicitacaoRepostaDto> registraSolicitacao(@Valid @RequestBody SolicitacaoDto solicitacaoDto) {
 		Solicitacao solicitacao = solicitacaoDto.solicitacaoFromDto(solicitacaoDto);
+		veiculoService.save(solicitacao.getVeiculo());
 		solicitacaoService.save(solicitacao);
 		return ResponseEntity.ok().body(new SolicitacaoRepostaDto(solicitacao));
 	}
