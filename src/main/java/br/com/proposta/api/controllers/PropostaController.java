@@ -19,14 +19,15 @@ public class PropostaController {
 	@Autowired
 	private PropostaService propostaService;
 	
+// ta faltando validação e usar o DTO não a entidade
 	@GetMapping
-	public ResponseEntity<List<Proposta>> findAll() {
-		List<Proposta> list = propostaService.findAll();
-		return ResponseEntity.ok().body(list);
+	public ResponseEntity<List<Proposta>> buscaTodasPropostas() {
+		List<Proposta> listaDePropostas = propostaService.findAll();
+		return ResponseEntity.ok().body(listaDePropostas);
 	}
 	
 	@GetMapping("/{id_proposta}")
-	public ResponseEntity<Proposta> findById(@PathVariable("id_proposta") Long id) {
+	public ResponseEntity<Proposta> buscaPropostaPorId(@PathVariable("id_proposta") Long id) {
 		Proposta proposta = propostaService.findById(id);
 		return ResponseEntity.ok().body(proposta);
 	}
